@@ -19,14 +19,15 @@ script:
   - cd PatternPaint
   - qmake -config release PREFIX=/app
   - make -j7
-  - sudo make install
+#  - sudo make install # Why does it not seem to work?
+#  - find /app # Why is there nothing?
+#  - sudo chown -R $USER /app
   - cd ..
-  - find /app
   - find PatternPaint/
-  - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage -O linuxdeployqt
+  - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-1-x86_64.AppImage -O linuxdeployqt
   - chmod a+x linuxdeployqt
   - unset LD_LIBRARY_PATH # Remove too old Qt from the search path; TODO: Move inside the linuxdeployqt AppImage
-  - sudo chown -R $USER /app
+
   - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -bundle-non-qt-libs || true
   - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -appimage
 
