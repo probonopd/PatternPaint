@@ -17,7 +17,7 @@ script:
 #  - source /opt/qt55/bin/qt55-env.sh
   - source /opt/qt57/bin/qt57-env.sh
   - cd PatternPaint
-  - qmake -config release PREFIX=/app
+  - qmake -config release
   - make -j7
   - icns2png images/patternpaint.icns -x
   - cp patternpaint_256x256x32.png patternpaint.png
