@@ -23,7 +23,7 @@ script:
   - cd ..
   - find /app
   - find PatternPaint/
-  - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-8d795dc-x86_64.AppImage -O linuxdeployqt
+  - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage -O linuxdeployqt
   - chmod a+x linuxdeployqt
   - unset LD_LIBRARY_PATH # Remove too old Qt from the search path; TODO: Move inside the linuxdeployqt AppImage
   - sudo chown -R $USER /app
