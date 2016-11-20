@@ -20,10 +20,15 @@ script:
   - qmake -config release PREFIX=/app
   - make -j7
   - sudo make install
-  - wget -c https://gist.github.com/probonopd/759fa980147c689a9cf8983f6d45f096/raw/83eed1769fb09deb44c54c27667752ab7b5d6b2e/easy-linuxdeployqt.sh
-  - bash easy-linuxdeployqt.sh
-  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash ./upload.sh ./*.AppImage
+  - cd ..
+  - find /app
+  - find PatternPaint/
+  - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-8d795dc-x86_64.AppImage -O linuxdeployqt
+  - chmod a+x linuxdeployqt
+  - unset LD_LIBRARY_PATH # Remove too old Qt from the search path; TODO: Move inside the linuxdeployqt AppImage
+  - sudo chown -R $USER /app
+  - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -bundle-non-qt-libs || true
+  - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -appimage
 
 branches:
   except:
