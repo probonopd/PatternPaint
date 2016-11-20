@@ -19,9 +19,6 @@ script:
   - cd PatternPaint
   - qmake -config release PREFIX=/app
   - make -j7
-#  - sudo make install # Why does it not seem to work?
-#  - find /app # Why is there nothing?
-#  - sudo chown -R $USER /app
   - icns2png images/patternpaint.icns -x
   - cp patternpaint_256x256x32.png patternpaint.png
   - cd ..
@@ -32,7 +29,3 @@ script:
   - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -bundle-non-qt-libs || true # Bug that exits with 1
   - ./linuxdeployqt PatternPaint/PatternPaint -qmldir=PatternPaint/ -appimage || true # Bug that exits with 1
   - curl --upload-file ./*.AppImage https://transfer.sh/PatternPaint-git$(git describe --tags --always)-x86_64.AppImage
-
-branches:
-  except:
-    - /^(?i:continuous)$/ # Do not build tags that we create when we upload to GitHub Releases
