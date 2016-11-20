@@ -22,6 +22,8 @@ script:
 #  - sudo make install # Why does it not seem to work?
 #  - find /app # Why is there nothing?
 #  - sudo chown -R $USER /app
+  - icns2png images/patternpaint.icns -x
+  - cp patternpaint_256x256x32.png patternpaint.png
   - cd ..
   - find PatternPaint/
   - wget -c https://github.com/probonopd/linuxdeployqt/releases/download/1/linuxdeployqt-1-x86_64.AppImage -O linuxdeployqt
